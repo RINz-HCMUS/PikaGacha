@@ -23,6 +23,7 @@ Board::~Board()
 	for (int i = 0; i < n_row; i++)
 		delete [] _board[i];
 	delete [] _board;
+	return;
 }
 
 
@@ -393,7 +394,7 @@ bool Board::checkBoard()
 void Board::drawCells(int type, int y, int x, bool isVisible){
     if(type == -1)
         return;
-	
+
 	int textcolor = type % 16;
 	if(!textcolor) textcolor++;
 
@@ -401,15 +402,17 @@ void Board::drawCells(int type, int y, int x, bool isVisible){
 
     for(int i = 0; i < RowCell; i++)
         for(int j = 0; j < ColCell; j++){
+        	// vẽ 2 đường trên dưới của ô
             if((i == 0 || i == RowCell - 1) && j != 0 && j != ColCell -1){
                 SettingGame::gotoXY(x * ColCell + j + left, y * RowCell + i + top);
 				putchar('-');
             }
-
+			// vẽ 2 đường trái phải của ô
             else if((j == 0 || j == ColCell - 1) && i != 0 && i != RowCell - 1){
                 SettingGame::gotoXY(x * ColCell + j + left, y * RowCell + i + top);
 				putchar('|');
             }
+            // vẽ khoảng trống giữa các ô
             else{
                 SettingGame::gotoXY(x * ColCell + j + left, y * RowCell + i + top);
                 putchar(' ');
@@ -417,6 +420,8 @@ void Board::drawCells(int type, int y, int x, bool isVisible){
         }
     SettingGame::gotoXY(x * ColCell + ColCell / 2 + left, y * RowCell + RowCell / 2 + top);
     SettingGame::setColor(BLACK, textcolor);
+	// isVisible là 1 biến bool
+	// nếu isVisible = true vẽ ký tự bên trong ô    
 	if (isVisible)
 		putchar(type + 32);
 	SettingGame::setColor(BLACK, WHITE);
@@ -437,7 +442,9 @@ void Board::drawLine(std::vector<std::pair<int,int>> path)
 	int RowCell = 5, ColCell = 11; // kích thước ô
 	for (int i = 0; i < n - 1; i ++)
 	{
+		
 		std::pair<int,int> start = path[i], end = path[i+1];
+		// vẽ đường ngang 
 		if (start.first == end.first)
 		{
 			if (start.second > end.second)
@@ -451,6 +458,7 @@ void Board::drawLine(std::vector<std::pair<int,int>> path)
 			}
 		}
 		
+		// vẽ đường dọc
 		else
 		{
 			if (start.first > end.first)
