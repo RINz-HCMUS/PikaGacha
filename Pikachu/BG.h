@@ -6,7 +6,10 @@
 #define BG_H
 
 struct BG{
+	// Vị trí bắt đầu in
 	int top, left;
+	
+	// Hàm in background
 	static void drawBG(int);	
 };
 

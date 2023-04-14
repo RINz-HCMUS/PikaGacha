@@ -11,6 +11,7 @@ void CustomMode::CustomPlay(int row, int col, account& newAccount, int mode, int
 		Sleep(5000);
 		return;
 	}
+	
 	int CompleteCells = 0;
 	int Type = rand() % 152;
 	if(!Type)
@@ -33,8 +34,6 @@ void CustomMode::CustomPlay(int row, int col, account& newAccount, int mode, int
 	p = {0, 0};
     q = {0, 0};
             	
-
-    
     sound::start();
     
 	SettingGame::setColor(BLACK, WHITE);
@@ -331,14 +330,13 @@ void CustomMode::CustomPlay(int row, int col, account& newAccount, int mode, int
         
     }
 
-    
-    
     SettingGame::clearConsole();
     SettingGame::setColor(BLACK, LIGHTYELLOW);
     BG::drawBG(Type);
     Menu::printVictory(Score);
     sound::victory();
-    newAccount.Score = Score;
+    
+	newAccount.Score = Score;
     newAccount.Mode = 3;
     
     for(int i = 0; i < 152; i++)
@@ -349,6 +347,7 @@ void CustomMode::CustomPlay(int row, int col, account& newAccount, int mode, int
 	account a[100];
 	int stt = 0;
 	bool saved = 0;
+	
     //	Truyen du lieu tu file
 	std::ifstream ifs3("rank.txt", std::ios::in);
     while(!ifs3.eof()){
@@ -368,6 +367,7 @@ void CustomMode::CustomPlay(int row, int col, account& newAccount, int mode, int
     stt--;
     ifs3.close();
     
+    // Lưu điểm và pokemon đã thu thập được cho account đang đăng nhập
     for(int i = 0; i < stt; i++){
         if(strcmp(newAccount.Name, a[i].Name) == 0){
             saved = 1;
@@ -386,10 +386,10 @@ void CustomMode::CustomPlay(int row, int col, account& newAccount, int mode, int
     
     for(int i = 0; i < stt - 1; i++)
 		for(int j = i + 1; j < stt; j++)
-			if(a[i].Score < a[j].Score){
-					std::swap(a[i], a[j]);
-			}
-	
+			if(a[i].Score < a[j].Score)
+				std::swap(a[i], a[j]);	
+			
+	// Ghi lại danh sách đã sắp xếp
 	std::ofstream ofs3("rank.txt", std::ios::out);
         for(int i = 0; i < stt; i++){
 			ofs3 << a[i].Name << std::endl;

@@ -9,12 +9,12 @@ void NoobMode::NoobPlay(account& newAccount){
 
 	int row = 6, col = 6;
 	Board A(row, col, 150);
+	
 	while(!A.checkBoard())
 		A.suffleBoard();
 		
-	int Score = 0;
+	int Score = 0, CompleteCells = 0;
     int X = 0, Y = 0, oldX = 0, oldY = 0;
-    int CompleteCells = 0;
     bool choose = false;
     int Xchoose, Ychoose;
 	
@@ -253,6 +253,7 @@ void NoobMode::NoobPlay(account& newAccount){
     BG::drawBG(Type);
     Menu::printVictory(Score);
     sound::victory();
+   
     newAccount.Score = Score;
     newAccount.Mode = 1;
     
@@ -264,6 +265,7 @@ void NoobMode::NoobPlay(account& newAccount){
 	account a[100];
 	int stt = 0;
 	bool saved = 0;
+	
     //	Truyen du lieu tu file
 	std::ifstream ifs("rank.txt", std::ios::in);
     while(!ifs.eof()){
@@ -283,6 +285,7 @@ void NoobMode::NoobPlay(account& newAccount){
     stt--;
     ifs.close();
     
+    // Lưu điểm và pokemon đã thu thập được cho account đang đăng nhập
     for(int i = 0; i < stt; i++){
         if(strcmp(newAccount.Name, a[i].Name) == 0){
             saved = 1;
@@ -302,9 +305,10 @@ void NoobMode::NoobPlay(account& newAccount){
     for(int i = 0; i < stt - 1; i++)
 		for(int j = i + 1; j < stt; j++)
 			if(a[i].Score < a[j].Score){
-					std::swap(a[i], a[j]);
+				std::swap(a[i], a[j]);
 			}
-	
+			
+	// Ghi lại danh sách đã sắp xếp	
 	std::ofstream ofs1("rank.txt", std::ios::out);
         for(int i = 0; i < stt; i++){
 			ofs1 << a[i].Name << std::endl;

@@ -5,7 +5,7 @@ void ProMode::ProPlay(account& newAccount){
 	int Type = rand() % 150;
 	if(!Type)
 		Type++;
-	int Score = 0;
+
 	int row = 6, col = 8;
 	Board2 B(row, col, 150);
 	
@@ -13,7 +13,7 @@ void ProMode::ProPlay(account& newAccount){
 		B.suffleBoard();
 		
 	int X = 0, Y = 0, oldX = 0, oldY = 0;
-    int CompleteCells = 0;
+    int Score = 0, CompleteCells = 0;
     bool choose = false;
     int Xchoose, Ychoose;
 	

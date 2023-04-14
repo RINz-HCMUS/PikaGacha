@@ -3,8 +3,6 @@
 #include "SettingGame.h"
 #include "BG.h"
 #include "Sound.h"
-#include <fstream>
-#include <cstring>
 
 using namespace std;
 
@@ -31,15 +29,9 @@ struct account{
 
 #endif	// ACCOUNT_H
 
-
 #include "Noob.h"
 #include "Pro.h"
 #include "Custom.h"
-
-
-
-
-
 
 #ifndef MENU_H
 #define MENU_H
@@ -62,11 +54,13 @@ struct Menu{
 	// In phần Hướng dẫn chơi
 	void printTutorial();
 	
+	// In ra ??? khi chưa sở hữu pokemon
 	void printNotOwned();
 	
+	// In bộ sưu tập Pokedex
 	void printPokedex(int, int []);	
-	// In BXH
 	
+	// In BXH
 	void printLeaderBoard(account);
 
 	// Chỉnh tốc độ thực thi
@@ -78,6 +72,7 @@ struct Menu{
 	// In menu mức độ game
 	void printGameMode(account&);
 	
+	// In màn hình đăng nhập
 	void printLOGIN();
 	
 	// In ra menu CustomMode
@@ -88,8 +83,6 @@ struct Menu{
 	
 	// In ra màn hình chiến thắng
 	static void printVictory(int);
-
-	void Exit();
 };
 
 #endif // MENU_H

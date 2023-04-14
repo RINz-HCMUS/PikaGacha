@@ -6,13 +6,14 @@
 #define CUSTOMMODE_H
 
 struct CustomMode{
-    /// Khởi tạo bảng
+    // Khởi tạo bảng
     Board A; // row, col, 150
     //~Board A;
-	
-	//Player player;
     
-	/// Hàm thực thi
+    // Số ô đã hoàn thành (xóa)
+	int CompleteCells;
+	
+	// Hàm thực thi
     static void CustomPlay(int, int, account&m, int, int);
 	
 };

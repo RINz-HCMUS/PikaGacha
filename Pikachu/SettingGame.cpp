@@ -7,8 +7,8 @@ HANDLE SettingGame::consoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
 void SettingGame::setCenterWindow(){
 	RECT rectClient, rectWindow;
 	GetClientRect(consoleWindow, &rectClient), GetWindowRect(consoleWindow, &rectWindow);
-//	int width = 1920;
-//	int height = 1080;
+//	int width = 2560;
+//	int height = 1440;
 //	int posX = (GetSystemMetrics(SM_CXSCREEN) - width) / 2,
 //		posY = (GetSystemMetrics(SM_CYSCREEN) - height) / 2;
 //	MoveWindow(consoleWindow, posX, posY, width, height, TRUE);
@@ -45,13 +45,10 @@ void SettingGame::setCursorInput(bool status){
 	SetConsoleMode(hInput, prev_mode & ~ENABLE_QUICK_EDIT_MODE);
 
 	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE); // Lấy handle của console
-//
     CONSOLE_CURSOR_INFO cursorInfo;
     GetConsoleCursorInfo(console, &cursorInfo);       // Lấy thông tin hiện tại của con trỏ chuột
-
     cursorInfo.bVisible = status;                      // Thiết lập con trỏ chuột không hiển thị
     cursorInfo.dwSize = 1;                            // Thiết lập kích thước con trỏ chuột là 1
-
     SetConsoleCursorInfo(console, &cursorInfo);        // Thiết lập thông tin con trỏ chuột mới
 }
 
@@ -59,9 +56,10 @@ void SettingGame::setCursorInput(bool status){
 void SettingGame::clearConsole(){
 	system("cls");
 }
+
 void SettingGame::setUpConsole(){
     setCenterWindow();
-    SetConsoleTitle("PIKACHU"); /// Thiết lập tiêu đề console
+    SetConsoleTitle("PIKACHU"); // Thiết lập tiêu đề console
     //disableMaximize();
     setCursorInput(0);
     setFontInfo();

@@ -116,11 +116,11 @@ void Menu::printLeaderBoard(account newAccount){
     }
     ifs.close();
 	stt--;
-	
-	SettingGame::clearConsole();
-	sound::leaderboard();
-    SettingGame::setColor(BLACK, YELLOW);
-	cout << R"(
+	while(true){
+		SettingGame::clearConsole();
+		sound::leaderboard();
+	    SettingGame::setColor(BLACK, YELLOW);
+		cout << R"(
    /$$       /$$$$$$$$  /$$$$$$  /$$$$$$$  /$$$$$$$$ /$$$$$$$  /$$$$$$$   /$$$$$$   /$$$$$$  /$$$$$$$  /$$$$$$$ 
   | $$      | $$_____/ /$$__  $$| $$__  $$| $$_____/| $$__  $$| $$__  $$ /$$__  $$ /$$__  $$| $$__  $$| $$__  $$
   | $$      | $$      | $$  \ $$| $$  \ $$| $$      | $$  \ $$| $$  \ $$| $$  \ $$| $$  \ $$| $$  \ $$| $$  \ $$
@@ -133,128 +133,128 @@ void Menu::printLeaderBoard(account newAccount){
 			                                                                                                                                                                                                                                                                                                                                
 	)";
 
-    SettingGame::setColor(BLACK, WHITE);
-    SettingGame::gotoXY(NoX, 12);
-    std::cout << "No.";
-
-	SettingGame::gotoXY(NameX, 12);
-	std::cout << "NAME";
-
-	SettingGame::gotoXY(ModeX, 12);
-	std::cout << "MODE";
-
-	SettingGame::gotoXY(ScoreX, 12);
-	std::cout << "SCORE";
+	    SettingGame::setColor(BLACK, WHITE);
+	    SettingGame::gotoXY(NoX, 12);
+	    std::cout << "No.";
 	
-	SettingGame::gotoXY(PokeX, 12);
-	std::cout << "Pokemon Collect";
+		SettingGame::gotoXY(NameX, 12);
+		std::cout << "NAME";
 	
-	SettingGame::gotoXY(NoX, 33);
-	std::cout << "YOUR RANK:";
+		SettingGame::gotoXY(ModeX, 12);
+		std::cout << "MODE";
 	
-	for(int i = 0; i < stt; i++){
-		if(i < 11){
-			SettingGame::gotoXY(ModeX, 14 + i * 2);
-			switch(accountList[i].Mode){
-				case 1:{
-				    SettingGame::gotoXY(ModeX, 14 + i * 2);
-					SettingGame::setColor(BLACK, WHITE);
-					std::cout << "NOOB";
-					break;
+		SettingGame::gotoXY(ScoreX, 12);
+		std::cout << "SCORE";
+		
+		SettingGame::gotoXY(PokeX, 12);
+		std::cout << "Pokemon Collect";
+		
+		SettingGame::gotoXY(NoX, 33);
+		std::cout << "YOUR RANK:";
+		
+		for(int i = 0; i < stt; i++){
+			if(i < 11){
+				SettingGame::gotoXY(ModeX, 14 + i * 2);
+				switch(accountList[i].Mode){
+					case 1:{
+					    SettingGame::gotoXY(ModeX, 14 + i * 2);
+						SettingGame::setColor(BLACK, WHITE);
+						std::cout << "NOOB";
+						break;
+					}
+					case 2:{
+					    SettingGame::gotoXY(ModeX, 14 + i * 2);
+						SettingGame::setColor(BLACK, YELLOW);
+						std::cout << "PRO";
+						break;
+					}
+					case 3:{
+						SettingGame::setColor(BLACK, RED);
+						SettingGame::gotoXY(ModeX, 14 + i * 2);
+						std::cout << "CUSTOM";
+						break;
+					}
 				}
-				case 2:{
-				    SettingGame::gotoXY(ModeX, 14 + i * 2);
-					SettingGame::setColor(BLACK, YELLOW);
-					std::cout << "PRO";
-					break;
-				}
-				case 3:{
-					SettingGame::setColor(BLACK, RED);
-					SettingGame::gotoXY(ModeX, 14 + i * 2);
-					std::cout << "CUSTOM";
-					break;
-				}
+		        SettingGame::gotoXY(NoX , 14 + i * 2);
+		        std::cout << (i + 1);
+		
+				SettingGame::gotoXY(NameX, 14 + i * 2);
+				std::cout << accountList[i].Name;
+		
+				SettingGame::gotoXY(ScoreX, 14 + i * 2);
+				std::cout << accountList[i].Score;
+				
+				SettingGame::gotoXY(PokeX + 7, 14 + i * 2);
+				std::cout << num_pokedex[i];
 			}
-	        SettingGame::gotoXY(NoX , 14 + i * 2);
-	        std::cout << (i + 1);
-	
-			SettingGame::gotoXY(NameX, 14 + i * 2);
-			std::cout << accountList[i].Name;
-	
-			SettingGame::gotoXY(ScoreX, 14 + i * 2);
-			std::cout << accountList[i].Score;
 			
-			SettingGame::gotoXY(PokeX + 7, 14 + i * 2);
-			std::cout << num_pokedex[i];
+			if(strcmp(newAccount.Name, accountList[i].Name) == 0)
+				ranking = i;
+				
 		}
 		
-		if(strcmp(newAccount.Name, accountList[i].Name) == 0)
-			ranking = i;
-			
-	}
-	
-	if(ranking != -1){
-			switch(accountList[ranking].Mode){
-				case 1:{
-					SettingGame::setColor(BLACK, WHITE);
-					break;
+		if(ranking != -1){
+				switch(accountList[ranking].Mode){
+					case 1:{
+						SettingGame::setColor(BLACK, WHITE);
+						break;
+					}
+					case 2:{
+						SettingGame::setColor(BLACK, YELLOW);
+						break;
+					}
+					case 3:{
+						SettingGame::setColor(BLACK, RED);
+						break;
+					}
 				}
-				case 2:{
-					SettingGame::setColor(BLACK, YELLOW);
-					break;
-				}
-				case 3:{
-					SettingGame::setColor(BLACK, RED);
-					break;
-				}
-			}
-									
-			SettingGame::gotoXY(NoX , 35);
-	        std::cout << (ranking + 1);
-	
-			SettingGame::gotoXY(NameX, 35);
-			std::cout << accountList[ranking].Name;
-	
-			SettingGame::gotoXY(ScoreX, 35);
-			std::cout << accountList[ranking].Score;
-			
-			SettingGame::gotoXY(PokeX + 7, 35);
-			std::cout << num_pokedex[ranking];
-	}
-	
-	else{
-			SettingGame::gotoXY(NoX , 35);
-	        std::cout << "UNRANKED";
-	
-			SettingGame::gotoXY(NameX, 35);
-			std::cout << newAccount.Name;
-	
-			SettingGame::gotoXY(ScoreX, 35);
-			std::cout << 0;
-			
-			SettingGame::gotoXY(PokeX + 7, 35);
-			std::cout << 0;	
-			
-			for(int i = 0; i < 152; i++)
-				noPokemon[i] = 0;
-	}
-	SettingGame::setColor(BLACK, WHITE);
-	SettingGame::gotoXY(15, 40);
-	std::cout << "Press ENTER to view your Pokedex.";
-    SettingGame::gotoXY(60, 40);
-	std::cout << "Press ESC to back.";
-	while(true)
-	switch(SettingGame::getConsoleInput()){
-		case KEY_ESC:{
-			return;
+										
+				SettingGame::gotoXY(NoX , 35);
+		        std::cout << (ranking + 1);
+		
+				SettingGame::gotoXY(NameX, 35);
+				std::cout << accountList[ranking].Name;
+		
+				SettingGame::gotoXY(ScoreX, 35);
+				std::cout << accountList[ranking].Score;
+				
+				SettingGame::gotoXY(PokeX + 7, 35);
+				std::cout << num_pokedex[ranking];
 		}
-		case KEY_SPACE:{
-			if(ranking != -1)
-				Menu::printPokedex(num_pokedex[ranking], accountList[ranking].pokemon);
-			else
-				Menu::printPokedex(0, noPokemon);
-			sound::leaderboard();
-			break;
+		
+		else{
+				SettingGame::gotoXY(NoX , 35);
+		        std::cout << "UNRANKED";
+		
+				SettingGame::gotoXY(NameX, 35);
+				std::cout << newAccount.Name;
+		
+				SettingGame::gotoXY(ScoreX, 35);
+				std::cout << 0;
+				
+				SettingGame::gotoXY(PokeX + 7, 35);
+				std::cout << 0;	
+				
+				for(int i = 0; i < 152; i++)
+					noPokemon[i] = 0;
+		}
+		SettingGame::setColor(BLACK, WHITE);
+		SettingGame::gotoXY(15, 40);
+		std::cout << "Press ENTER to view your Pokedex.";
+	    SettingGame::gotoXY(60, 40);
+		std::cout << "Press ESC to back.";
+		switch(SettingGame::getConsoleInput()){
+			case KEY_ESC:{
+				return;
+			}
+			case KEY_SPACE:{
+				if(ranking != -1)
+					Menu::printPokedex(num_pokedex[ranking], accountList[ranking].pokemon);
+				else
+					Menu::printPokedex(0, noPokemon);
+				//sound::leaderboard();
+				break;
+			}
 		}
 	}
 }
@@ -379,18 +379,15 @@ void Menu::printAboutGame(){
     	CUSTOM MODE allows you to customize the parameters of the game screen such as board size, board linkage, and new and unique stealth mode!
 
     	POKEDEX is not just a classic Pikachu game, now you can capture Pokemon in your gameplay! Use your luck and skills to catch all 151 Pokemon!
-
 	
 	  /_\  _   _| |_| |__   ___  _ __  (_)_ __  / _| ___  _ __ _ __ ___   __ _| |_(_) ___  _ __
 	 //_\\| | | | __| '_ \ / _ \| '__| | | '_ \| |_ / _ \| '__| '_ ` _ \ / _` | __| |/ _ \| '_ \
 	/  _  \ |_| | |_| | | | (_) | |    | | | | |  _| (_) | |  | | | | | | (_| | |_| | (_) | | | |
 	\_/ \_/\__,_|\__|_| |_|\___/|_|    |_|_| |_|_|  \___/|_|  |_| |_| |_|\__,_|\__|_|\___/|_| |_|
-
+		
+		Game belongs to the Programming Techniques project | HCMUS
 			Vo Huu Tuan  22127439
 			Ho Minh Dang 22127050
-        
-		Game belongs to the Programming Techniques project | HCMUS
-
      )";
 	while(SettingGame::getConsoleInput() != KEY_ESC);
 }
@@ -617,6 +614,7 @@ void Menu::printGameMode(account& newAccount){
 							std::cout << "Input Col (Max = 12): ";
 							cin >> col;
 							std::cout << "Hidden mode (1: Yes / 0: NO)\n";
+							std::cout << "Your choice: ";
 							cin >> mode;
 							std::cout 	<< "Removal method:\n"
 									  	<< "0. Normal\n"
@@ -674,8 +672,4 @@ void Menu::printVictory(int score){
 
 void Menu::Slow(){
 	Sleep(100);
-}
-
-void Menu::Exit(){
-	exit(0);
 }

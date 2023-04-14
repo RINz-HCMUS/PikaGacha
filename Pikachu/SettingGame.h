@@ -7,6 +7,9 @@
 #include <cstring>
 #include <vector>
 #include <cstdlib>
+#include <MMSystem.h>
+#include <stdio.h>
+#include <fstream>
 
 /// Định dạng color
 #define BLACK 0
@@ -40,7 +43,6 @@
 
 //using namespace std;
 
-
 #ifndef SETTINGGAME_H
 #define SETTINGGAME_H
 
@@ -62,8 +64,6 @@ struct SettingGame{
 
     /// Hàm chỉnh màu
     static void setColor(int, int);
-//    /// Hàm thiết lập tiêu đề console
-//    static void setUp
 
     /// Hàm di chuyển con trỏ đến vị trí (x, y)
     static void gotoXY(short, short);
