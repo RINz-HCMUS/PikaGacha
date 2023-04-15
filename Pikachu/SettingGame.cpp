@@ -1,5 +1,8 @@
 #include "SettingGame.h"
 
+// Các hàm sau tham khảo https://github.com/Louis2602/Pikachu-Game 
+//và https://codelearn.io/sharing/windowsh-va-ham-dinh-dang-console-p1
+
 /// Thiết lập các con trỏ
 HWND SettingGame::consoleWindow = GetConsoleWindow();
 HANDLE SettingGame::consoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);

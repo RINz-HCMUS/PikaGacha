@@ -62,6 +62,10 @@ int main()
 	        SettingGame::gotoXY(85, 24);
 			cout << "The account name must not be empty and must not exceed 15 English characters.";
 			SettingGame::gotoXY(85, 26);
+			SettingGame::setColor(BLACK, BLACK);
+			for(int i = 0; i < s.size(); i++)
+				putchar(' ');			
+			SettingGame::gotoXY(85, 26);
 			SettingGame::setColor(BLACK, WHITE);
 		    cin.ignore();
 			cin >> s;
@@ -92,7 +96,12 @@ int main()
 	        SettingGame::setColor(BLACK, RED);
 	        SettingGame::gotoXY(85, 24);
 	        cout << "The account password must not be empty and must not exceed 15 character.";
-	        SettingGame::setColor(BLACK, WHITE);
+	    	SettingGame::gotoXY(85, 30);
+			SettingGame::setColor(BLACK, BLACK);
+			for(int i = 0; i < s.size(); i++)
+				putchar(' ');
+	        
+			SettingGame::setColor(BLACK, WHITE); 
 	        SettingGame::gotoXY(85, 30);
 	        cin.ignore();
 			cin >> s;
@@ -123,6 +132,12 @@ int main()
 						SettingGame::setColor(BLACK, RED);
 	           			SettingGame::gotoXY(85, 24);
 						cout << "Wrong password. Try agian." << tmp << " times left.\n";
+						SettingGame::gotoXY(85, 30);
+						SettingGame::setColor(BLACK, BLACK);
+						for(int i = 0; i < s.size(); i++)
+							putchar(' ');
+							
+						SettingGame::setColor(BLACK, WHITE);
 	                    SettingGame::gotoXY(85, 30);
 						cin.ignore();
 	                    cin >> s;
